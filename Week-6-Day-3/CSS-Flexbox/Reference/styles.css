@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Centering Divs */
+.flex-container {
+    min-height: 700px;
+    border: 5px solid black;
+    display: flex;
+    background-color: aqua;
+    justify-content: space-evenly;
+    /* space-between, space-around, space-evenly */
+    align-items: center;
+}
+
+.box {
+    background-color: #2992d0;
+    height: 100px;
+    width: 100px;
+    font-size: 40pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex-direction */
+.flex-container1 {
+    min-height: 700px;
+    border: 5px solid black;
+    background-color: aqua;
+    flex-direction: column;
+    display: flex;
+    /* flex-direction: row, row-reverse, column; */
+    justify-content: space-around;
+    align-items: center;
+}
+
+.box1 {
+    background-color: #2992d0;
+    height: 100px;
+    width: 100px;
+    font-size: 40pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex-Wrap and Gap */
+.flex-container2 {
+    min-height: 700px;
+    border: 5px solid black;
+    background-color: aqua;
+    display: flex;
+    gap: 20px;
+    /* column-gap: 20px;
+    row-gap: 30px; */
+    flex-wrap: wrap;
+    /* flex-wrap: nowrap; */
+    justify-content: center; /* this now works on individual main-axis due to flex-wrap*/
+    align-items: center; /* this now works on individual main-axis due to flex-wrap*/
+    align-content: center; /* To tackle above issue */
+}
+
+.box2 {
+    background-color: #2992d0;
+    height: 200px;
+    width: 200px;
+    font-size: 40pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flex-Shrink */
+.flex-container3 {
+    min-height: 700px;
+    border: 5px solid black;
+    display: flex;
+    gap: 10px;
+    background-color: aqua;
+}
+
+.box3 {
+    background-color: #2992d0;
+    height: 150px;
+    width: 150px;
+    font-size: 40pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Now the items will not shrink but overflow the container */
+    /* flex-shrink: 0;  */
+    flex-shrink: 1;
+    min-width: 100px;
+}
+
+/* This will not shrink */
+#box-noshrink {
+    flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+    .flex-container3 {
+        flex-wrap: wrap;
+    }
+}
+
+/* Flex-Grow */
+.flex-container4 {
+    min-height: 700px;
+    border: 5px solid black;
+    display: flex;
+    gap: 10px;
+    background-color: aqua;
+}
+
+.box4 {
+    background-color: #2992d0;
+    height: 150px;
+    width: 150px;
+    font-size: 40pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    max-width: 300px; /* Now the elements will not grow more than 300 px*/
+}
+
+#box-grow {
+    flex-grow: 5;
+    max-width: 500px;
+}
+
+/* Align-Self Property */
+.flex-container5 {
+    min-height: 700px;
+    border: 5px solid black;
+    display: flex;
+    gap: 20px;
+    background-color: aqua;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.box5 {
+    background-color: #2992d0;
+    height: 120px;
+    width: 120px;
+    font-size: 40pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#box-other {
+    align-self: center;
+    margin-right: auto; /* This will reamin in the start, useful in navigation bars */
+}
