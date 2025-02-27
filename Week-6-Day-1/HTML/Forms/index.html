@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms In HTML</title>
+  </head>
+  <body>
+    <h1>Form:</h1>
+    <form>
+      <label for="first_name">First name:</label><br />
+      <input type="text" id="first_name" name="first_name" /><br />
+      <label for="last_name">Last name:</label><br />
+      <input type="text" id="last_name" name="last_name" /><br />
+
+      <!-- Use of radio, to choose one out of many options -->
+      <p>Which role are you interested in?</p>
+      <input type="radio" id="frontend" name="role" value="FrontEnd" />
+      <label for="frontend">FrontEnd</label><br />
+      <input type="radio" id="backend" name="role" value="BackEnd" />
+      <label for="BackEnd">BackEnd</label><br />
+      <input type="radio" id="fullstack" name="role" value="FullStack" />
+      <label for="fullstack">FullStack</label><br />
+
+      <!-- Use of checkbox, to choose one or many options -->
+      <p>Which Technologies you have experience in?</p>
+      <input type="checkbox" name="HTML" value="html" />
+      <label for="HTML">HTML</label><br />
+      <input type="checkbox" name="CSS" value="css" />
+      <label for="CSS">CSS</label><br />
+      <input type="checkbox" name="JS" value="js" />
+      <label for="JS">JavaScript</label><br />
+      <input type="checkbox" name="PHP" value="php" />
+      <label for="PHP">PHP</label><br />
+      <input type="submit" name="Submit" />
+    </form>
+  </body>
+</html>
