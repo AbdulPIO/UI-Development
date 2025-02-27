@@ -48,10 +48,11 @@ body {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    gap: 5px;
 }
 
 .box-4 img {
     width: 25px;
     cursor: pointer;
-    padding-left: 5px;
+    /* padding-left: 5px; */
 }
