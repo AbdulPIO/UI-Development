@@ -1,0 +1,12 @@
+{
+    "name":"Abdul",
+    "id": 1001,
+    "isLoggedIn": true,
+    "license": null,
+    "technologies": ["Java","HTML", "CSS", "JavaScript"],
+    "myObj": {
+        "name": "Object",
+        "type": "object",
+        "items": ["item-1","item-2","item-3",{"a":true}]
+    }
+}
