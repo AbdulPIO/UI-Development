@@ -1,6 +1,6 @@
-<div>
+<app-card>
   <!-- Adding Listener -->
-  <button (click)="onSelectUser()">
+  <button [class.active]="selected" (click)="onSelectUser()">
     <!-- Property Binding -->
     <!-- <img [src]="imagePath()" [alt]="selectedUser().name" /> -->
 
@@ -10,4 +10,4 @@
     <!-- Using signal  -->
     <!-- <span>{{ selectedUser().name }}</span> -->
   </button>
-</div>
+</app-card>

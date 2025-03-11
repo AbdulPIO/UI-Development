@@ -1,6 +1,8 @@
 import { Component, signal, computed, Input, input, Output, EventEmitter, output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
+import { type User } from './user.model';
+import { CardComponent } from "../shared/card/card.component";
 // Helper for getting random user
 
 // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
@@ -12,18 +14,19 @@ import { DUMMY_USERS } from '../dummy-users';
 //   name: string;
 // };
 
-// Using interface in place of type alias
-interface User {
-  id: string;
-  avatar: string;
-  name: string;
-}
+// Using interface in place of type alias - outsourced
+// interface User {
+//   id: string;
+//   avatar: string;
+//   name: string;
+// }
 
 @Component({
   selector: 'app-user',
   standalone: true,
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
+  imports: [CardComponent]
 })
 export class UserComponent {
   // Using Input decorator
@@ -33,6 +36,9 @@ export class UserComponent {
 
   // Instead of accepting one property as above we can accept the whole object
   @Input({required: true}) user!:  User;
+
+  @Input({ required: true }) selected!: boolean;
+
   // adding custom event using Output decorator
   @Output() select = new EventEmitter();
 
