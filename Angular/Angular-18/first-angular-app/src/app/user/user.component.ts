@@ -2,7 +2,6 @@ import { Component, signal, computed, Input, input, Output, EventEmitter, output
 import { DUMMY_USERS } from '../dummy-users';
 
 import { type User } from './user.model';
-import { CardComponent } from "../shared/card/card.component";
 // Helper for getting random user
 
 // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
@@ -23,10 +22,8 @@ import { CardComponent } from "../shared/card/card.component";
 
 @Component({
   selector: 'app-user',
-  standalone: true,
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css',
-  imports: [CardComponent]
+  styleUrl: './user.component.css'
 })
 export class UserComponent {
   // Using Input decorator
@@ -35,7 +32,7 @@ export class UserComponent {
   // @Input({required: true}) name!: string;
 
   // Instead of accepting one property as above we can accept the whole object
-  @Input({required: true}) user!:  User;
+  @Input({ required: true }) user!: User;
 
   @Input({ required: true }) selected!: boolean;
 
@@ -45,7 +42,7 @@ export class UserComponent {
   // Using the output() function
   // select = output<string>();
 
-  get imagePath () {
+  get imagePath() {
     return 'assets/users/' + this.user.avatar;
   }
 
@@ -74,14 +71,14 @@ export class UserComponent {
   //   this.selectedUser = DUMMY_USERS[randomIndex];
   // }
 
-    // Using Signal For State Change
-    // selectedUser = signal(DUMMY_USERS[randomIndex]);
+  // Using Signal For State Change
+  // selectedUser = signal(DUMMY_USERS[randomIndex]);
 
-    // imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar)
+  // imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar)
 
-    // onSelectUser() {
-    //   const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    //   this.selectedUser.set(DUMMY_USERS[randomIndex]);
-    // }
+  // onSelectUser() {
+  //   const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+  //   this.selectedUser.set(DUMMY_USERS[randomIndex]);
+  // }
 }
 
