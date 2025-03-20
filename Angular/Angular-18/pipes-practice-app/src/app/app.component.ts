@@ -7,7 +7,7 @@ import { SortPipe } from './sort.pipe';
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  imports: [DatePipe, DecimalPipe, TemperaturePipe, SortPipe]
+  imports: [DatePipe, TemperaturePipe, SortPipe]
 })
 export class AppComponent {
   currentDate = new Date();
