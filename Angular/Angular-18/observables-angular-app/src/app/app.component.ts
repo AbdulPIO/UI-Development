@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   intervalSignal = toSignal(this.interval$, { initialValue: 0 }); // signal based on the interval observable
 
   // creating a custom observable
-  customInterval$ = new Observable((subscriber) => {
+  customInterval$ = new Observable((subscriber) => { // observable is a class imported from rxjs
     let timesExecuted = 0;
     const interval = setInterval(() => {
       if (timesExecuted > 5) {
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
     // calling custom observable
     this.customInterval$.subscribe({
       next: (val) => console.log(val),
-      complete: () => console.log('COMPLETED!')
+      complete: () => console.log('COMPLETED!')// executes when the observable executes
 
     })
 
