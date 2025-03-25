@@ -1,4 +1,20 @@
-document.addEventListener("DOMContentLoaded", loadTasks); // ensuring JS runs only after the page loads and loads stored tasks automatically
+// document.addEventListener("DOMContentLoaded", loadTasks); // ensuring JS runs only after the page loads and loads stored tasks automatically
+
+// Alternate method to load content first before JS gets introduced
+
+// using window.onload 
+window.onload = function () { // runs loadTasks after the entire page including styles is loaded, unlike DOMContentLoaded it waits for all assets to finish loading, this might introduce a slight delay
+    loadTasks();
+};
+
+// We can use and IIFE - runs immediately
+// (function () {
+//     loadTasks();
+// })();
+
+// using setTimeout 
+// setTimeout(loadTasks, 0); // schedules loadTasks() to run after 0 milliseconds.
+
 let editIndex = null; // declaring a global varibale to store the index of task being edited
 
 // Adding a task
@@ -27,9 +43,15 @@ function toggleTask(index) { // triggered when checkbox is clicked
 // deleting a task
 function deleteTask(index) {
     let tasks = getTasksFromStorage();
-    tasks.splice(index, 1); // removing one task at the specified index, index - position to be removed, 1 - one task to delete
-    saveTasksToStorage(tasks);
-    renderTasks();
+
+    // Adding a confirmation before deleting a task
+    let confirmDelete = confirm(`Are you sure you want to delete the task : "${tasks[index].text}"?`);
+
+    if (confirmDelete) {
+        tasks.splice(index, 1); // removing one task at the specified index, index - position to be removed, 1 - one task to delete
+        saveTasksToStorage(tasks);
+        renderTasks();
+    }
 }
 
 // opening edit modal
@@ -77,7 +99,7 @@ function renderTasks(filter = "all") { // if no argument passed show all tasks
         if (filter === "pending" && task.completed) return; // if filter is pending skip tasks that are already completed
 
         taskList.innerHTML += `<li class="${task.completed ? "completed" : ""}">
-        <input type="checkbox" onChange="toggleTask(${index})" ${task.completed ? "checked" : ""}>
+        <input type="checkbox" onChange="toggleTask(${index})" ${task.completed ? "checked" : ""} />
         <span>${task.text}</span>
         <button class="editButton" onclick="editTask(${index})">Edit</button>
         <button class="deleteButton" onclick="deleteTask(${index})">Delete</button>
@@ -88,8 +110,27 @@ function renderTasks(filter = "all") { // if no argument passed show all tasks
 
 
 // Getting tasks from sessionStorage
+// Modifying getTasksFromStorage to handle mismatched data
 function getTasksFromStorage() {
-    return JSON.parse(sessionStorage.getItem("tasks")) || []; // empty array used as a fallback if no tasks are stored
+    // return JSON.parse(sessionStorage.getItem("tasks")) || []; // empty array used as a fallback if no tasks are stored
+    try {
+        let tasks = JSON.parse(sessionStorage.getItem("tasks"));
+
+        // Ensuring tasks is an array
+        if (!Array.isArray(tasks)) throw new Error("Invalid Data Format");
+
+        //Validating Each task object
+        for (let task of tasks) {
+            if (typeof task.text !== "string" || typeof task.completed !== "boolean") {
+                throw new Error("Data Type Mismatch");
+            }
+        }
+        return tasks; // returning valid tasks
+    } catch (error) {
+        console.warn("Data mismatch! Resetting Tasks.");
+        sessionStorage.setItem("tasks", JSON.stringify([]));
+        return []; // returning an empty list on error
+    }
 }
 
 // Saving tasks to sessionStorage
