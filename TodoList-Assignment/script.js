@@ -32,6 +32,20 @@ function addTask() {
     document.getElementById("taskInput").value = ""; // to clear input field after adding a new task
 }
 
+// Adding a task by pressing enter key
+document.getElementById("taskInput").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") { // checks if the key pressed is Enter
+        event.preventDefault(); // prevent default submission behavior like submitting a from when pressing enter
+        let taskInput = document.getElementById("taskInput").value.trim();
+        if (taskInput === "") {
+            alert("Task Cannot be empty!");
+            return;
+        }
+        addTask(); // if input is not empty addTask function is called
+    }
+});
+
+
 // marking a task as completed
 function toggleTask(index) { // triggered when checkbox is clicked
     let tasks = getTasksFromStorage();
