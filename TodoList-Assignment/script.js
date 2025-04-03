@@ -45,6 +45,11 @@ document.getElementById("taskInput").addEventListener("keypress", function (even
     }
 });
 
+// Adding a Task by pressing enter using Form Tag
+// document.getElementById("taskForm").addEventListener("submit", function (event) {
+//     event.preventDefault();
+//     addTask();
+// })
 
 // marking a task as completed
 function toggleTask(index) { // triggered when checkbox is clicked

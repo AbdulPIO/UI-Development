@@ -1,10 +1,13 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withRouterConfig } from '@angular/router';
 
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withComponentInputBinding()), //adding config object
-    provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+    provideRouter(routes, withComponentInputBinding(), withRouterConfig({
+      paramsInheritanceStrategy: 'always',
+    })), //adding config object
+    // provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)
+  ]
 };

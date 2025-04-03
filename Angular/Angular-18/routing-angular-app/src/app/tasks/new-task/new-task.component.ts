@@ -2,6 +2,7 @@ import { Component, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TasksService } from '../tasks.service';
+import { CanDeactivateFn, Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-task',
@@ -16,6 +17,7 @@ export class NewTaskComponent {
   enteredSummary = signal('');
   enteredDate = signal('');
   private tasksService = inject(TasksService);
+  private router = inject(Router);
 
   onSubmit() {
     this.tasksService.addTask(
@@ -26,5 +28,18 @@ export class NewTaskComponent {
       },
       this.userId()
     );
+
+    this.router.navigate(['/users', this.userId(), 'tasks'], {
+      replaceUrl: true, // makes sure that this navigation action works like a redirect and the user can't use the back button to go back to the page they are coming from
+    })
   }
+}
+
+
+export const canLeaveEditPage: CanDeactivateFn<NewTaskComponent> = (component) => {
+  if (component.enteredTitle() || component.enteredDate() || component.enteredSummary()) {
+    return window.confirm('Do you really want to leave? You will lose the entered data.')
+  }
+
+  return true;
 }
