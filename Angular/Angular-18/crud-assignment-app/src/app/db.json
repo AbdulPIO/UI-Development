@@ -1,0 +1,18 @@
+{
+    "exams": [
+        {
+            "id": 1,
+            "examName": "Sample Exam",
+            "examKey": "Key1234",
+            "phone": "123-456-7890",
+            "examHours": 2,
+            "examDetails": [
+                {
+                    "subject": "Maths",
+                    "marks": 1,
+                    "no_of_questions": 10
+                }
+            ]
+        }
+    ]
+}
