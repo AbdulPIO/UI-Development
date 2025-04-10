@@ -1,0 +1,35 @@
+<label>Server Name</label>
+<!-- <input type="text" class="form-control" (input)="onUpdateServerName($event)" /> -->
+
+<!-- Using Two-Way_binding to achieve above functionality -->
+<input type="text" class="form-control" [(ngModel)]="serverName" />
+
+<!-- <p>{{ serverName }}</p> -->
+
+<!-- Property binding disabled attribute -->
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()"
+>
+  Add Server
+</button>
+<!-- <p>{{ allowNewServer }}</p> -->
+<!-- <p [innerText]="allowNewServer"></p> -->
+
+<!-- <p>{{ serverCreationStatus }}</p> -->
+
+<!-- Adding ngIf structural directive to conditional render content -->
+<p *ngIf="serverCreated; else noServer">
+  Server was created, server name is {{ serverName }}
+</p>
+
+<!-- @if - not work as it works only from Angular 17 and we're in Angular 16 project -->
+<!-- @if (serverCreated) { Server was created, server name is {{ serverName }} } -->
+
+<!-- Adding an else condition using the ng-template and local refernece (#) -->
+<ng-template #noServer>
+  <p>No server was created!</p>
+</ng-template>
+
+<app-server *ngFor="let server of servers"></app-server>

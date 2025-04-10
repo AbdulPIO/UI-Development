@@ -1,0 +1,7 @@
+<!-- String interpolation ( {{ }} ) to get data from .ts file of this component -->
+<p
+  [ngStyle]="{ backgroundColor: getColor() }"
+  [ngClass]="{ online: serverStatus === 'online' }"
+>
+  {{ "Server" }} with ID {{ serverId }} is {{ getServerStatus() }}
+</p>
