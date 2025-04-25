@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-servers',
+  standalone: false,
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.css']
 })
