@@ -28,6 +28,10 @@ export class RecipeService {
         return this.recipes.slice(); // using slice method to retun a new array, instead of a reference to this array
     }
 
+    getRecipe(index: number) {
+        return this.recipes[index];
+    }
+
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients);
     }
