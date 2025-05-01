@@ -3,11 +3,12 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { Recipe } from "./recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class RecipeService {
 
-    recipeSelected = new EventEmitter<Recipe>();
+    recipeSelected = new Subject<Recipe>();
 
     private recipes: Recipe[] = [
         new Recipe('Shahi Paneer', 'Super tasty Shahi Paneer', 'https://th.bing.com/th/id/OIP.dMzBs8OW-kL_egS4R3G2zAHaLH?rs=1&pid=ImgDetMain',
