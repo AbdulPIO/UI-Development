@@ -48,7 +48,33 @@
               class="help-block"
               >Please enter a valid email!</span
             >
+            <span class="help-block">{{
+              signupForm.get("userData").valid
+            }}</span>
           </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              formControlName="password"
+            />
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              class="form-control"
+              formControlName="confirmPassword"
+            />
+          </div>
+          Password match:
+          {{
+            signupForm.get('userData').errors?.['passwordMismatch'] ? false : true
+          }}
         </div>
         <div class="radio" *ngFor="let gender of genders">
           <label>

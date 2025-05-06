@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,15 +19,44 @@ export class AppComponent implements OnInit {
     this.signupForm = new FormGroup({
       'userData': new FormGroup({
         'username': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
-        'email': new FormControl(null, [Validators.required, Validators.email])
-      }),
+        'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails),
+        'password': new FormControl(null, Validators.required),
+        'confirmPassword': new FormControl(null, Validators.required)
+      }, this.passwordsMatch),
       'gender': new FormControl('male'),
-      'hobbies': new FormArray([])
+      'hobbies': new FormArray([]),
     });
+
+
+
+    this.signupForm.valueChanges.subscribe(
+      (value) => console.log(value)
+    );
+
+    this.signupForm.statusChanges.subscribe(
+      (status) => console.log(status)
+    )
+
+    this.signupForm.setValue({
+      'userData': {
+        'username': 'Max',
+        'email': 'max@test.com',
+        'password': '',
+        'confirmPassword': ''
+      },
+      'gender': 'female',
+      'hobbies': []
+    })
+    this.signupForm.patchValue({
+      'userData': {
+        'username': 'Anna',
+      }
+    })
   }
 
   onSubmit() {
     console.log(this.signupForm);
+    this.signupForm.reset();
   }
 
   onAddHobby() {
@@ -43,5 +73,30 @@ export class AppComponent implements OnInit {
       return { 'nameIsForbidden': true }
     }
     return null;
+  }
+
+  // Asynchronous validator
+  forbiddenEmails(control: FormControl): Promise<any> | Observable<any> {
+    const promise = new Promise<any>((resolve, reject) => {
+      setTimeout(() => {
+        if (control.value === 'test@test.com') {
+          resolve({ 'emailIsForbidden': true })
+        } else {
+          resolve(null);
+        }
+      }, 1500);
+    });
+    return promise;
+  }
+
+  // match passwords custom validator
+  passwordsMatch(group: FormGroup): { [key: string]: boolean } | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+    if (!password || !confirmPassword) {
+      return { 'passwordMismatch': true }
+    }
+
+    return password === confirmPassword ? null : { 'passwordMismatch': true }
   }
 }
