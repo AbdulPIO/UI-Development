@@ -1,58 +1,67 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Post } from './post.model';
+import { PostsService } from './posts.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   loadedPosts: Post[] = [];
-  isFetching: boolean = false;
+  isFetching = false;
+  error = null;
+  private errorSub: Subscription;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private postsService: PostsService) { }
 
   ngOnInit() {
-    this.fetchPosts();
+    this.errorSub = this.postsService.fetchPosts().subscribe(errorMessage => {
+      this.error = errorMessage;
+    })
+
+    this.isFetching = true;
+    this.postsService.fetchPosts().subscribe(posts => {
+      this.isFetching = false;
+      this.loadedPosts = posts;
+    }, error => {
+      this.isFetching = false;
+      this.error = error.message;
+    })
   }
 
   onCreatePost(postData: Post) {
     // Send Http request
     // console.log(postData);
-    this.http.post<{ name: string }>('https://crudcrud.com/api/0f53e8c5d40a48719cf948b0095cd77a/posts',
-      postData
-    ).subscribe(responseData => {
-      console.log(responseData);
-    });
+    this.postsService.createAndStorePost(postData.title, postData.content);
   }
 
   onFetchPosts() {
     // Send Http request
-    this.fetchPosts();
+    this.isFetching = true;
+    this.postsService.fetchPosts().subscribe(posts => {
+      this.isFetching = false;
+      this.loadedPosts = posts;
+    }, error => {
+      this.isFetching = false;
+      this.error = error.message;
+    })
   }
 
   onClearPosts() {
     // Send Http request
+    this.postsService.deletePosts().subscribe(() => {
+      this.loadedPosts = [];
+    })
   }
 
-  private fetchPosts() {
-    this.isFetching = true;
-    this.http.get<{ [key: string]: Post }>('https://crudcrud.com/api/0f53e8c5d40a48719cf948b0095cd77a/posts')
-      .pipe(
-        map(responseData => {
-          const postsArray = [];
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              postsArray.push({ ...responseData[key], id: key })
-            }
-          }
-          return postsArray;
-        }))
-      .subscribe(posts => {
-        this.isFetching = false;
-        this.loadedPosts = posts;
-      })
+  ngOnDestroy(): void {
+    this.errorSub.unsubscribe();
+  }
+
+  onHandleError() {
+    this.error = null;
   }
 }
