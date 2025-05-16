@@ -1,0 +1,38 @@
+<div class="card shadow p-4 mx-auto mt-5" style="max-width: 500px">
+  <h3 class="text-center mb-4" style="color: #4b7bec">Welcome Back!</h3>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <form (ngSubmit)="login()" autocomplete="off" novalidate>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        autocomplete="new-password"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+    </div>
+    <button class="btn btn-primary w-100">Login</button>
+  </form>
+</div>
