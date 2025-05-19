@@ -1,38 +1,54 @@
-<div class="card shadow p-4 mx-auto mt-5" style="max-width: 500px">
-  <h3 class="text-center mb-4" style="color: #4b7bec">Welcome Back!</h3>
-  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-
-  <form (ngSubmit)="login()" autocomplete="off" novalidate>
-    <div class="mb-3">
-      <label for="username" class="form-label">Username</label>
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        name="username"
-        [(ngModel)]="username"
-        required
+<div
+  class="container d-flex justify-content-center align-items-center bg-light"
+>
+  <div class="card shadow-lg" style="width: 100%; max-width: 400px">
+    <div class="card-header bg-primary text-white text-center">
+      <h4 class="mb-0">Welcome Back!</h4>
+    </div>
+    <div class="card-body">
+      <form
+        (ngSubmit)="login()"
+        #loginForm="ngForm"
         autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
+        spellcheck="off"
+        novalidate
+      >
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            [(ngModel)]="username"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            [(ngModel)]="password"
+            autocomplete="new-password"
+            required
+          />
+        </div>
+
+        <button
+          class="btn btn-primary w-100"
+          [disabled]="!loginForm.form.valid"
+        >
+          Login
+        </button>
+      </form>
     </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-        [(ngModel)]="password"
-        required
-        autocomplete="new-password"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
-    </div>
-    <button class="btn btn-primary w-100">Login</button>
-  </form>
+  </div>
 </div>
+
+<app-alert-modal
+  *ngIf="showAlert"
+  (close)="showAlert = false"
+></app-alert-modal>

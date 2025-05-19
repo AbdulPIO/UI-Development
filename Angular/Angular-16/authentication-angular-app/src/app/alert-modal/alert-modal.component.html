@@ -1,0 +1,17 @@
+<div class="modal-backdrop" (click)="close.emit()"></div>
+<div class="modal-dialog modal-lg">
+  <div class="modal-content border-danger shadow-lg">
+    <div class="modal-header bg-danger text-white">
+      <h5 class="modal-title ps-1">Authentication Failed!</h5>
+    </div>
+    <div class="modal-body text-center">
+      <p class="fs-5">The credentials you entered are incorrect.</p>
+      <p>Please check your credentials and try again.</p>
+    </div>
+    <div class="modal-footer justify-content-center">
+      <button class="btn btn-outline-light bg-danger" (click)="close.emit()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>

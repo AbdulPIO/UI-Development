@@ -10,15 +10,16 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username = '';
   password = '';
-  error = '';
+  showAlert = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
   login() {
-    if (this.authService.login(this.username, this.password)) {
+    const isLoggedIn = this.authService.login(this.username, this.password);
+    if (isLoggedIn) {
       this.router.navigate(['/dashboard']);
     } else {
-      this.error = 'Invalid Credentials';
+      this.showAlert = true;
     }
   }
 }
