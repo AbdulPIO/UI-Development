@@ -1,0 +1,164 @@
+<hr />
+<p>Material Typography</p>
+<h1>Material Display h1</h1>
+<h2>Material Display h2</h2>
+<h3>Material Display h3</h3>
+<h4>Material Display h4</h4>
+<h5>Material Display h5</h5>
+<h6>Material Display h6</h6>
+<hr />
+
+<p>Material Buttons</p>
+<div>
+  <button mat-button>Button</button>
+  <button mat-raised-button>Button</button>
+  <button mat-flat-button>Button</button>
+  <button mat-stroked-button>Button</button>
+</div>
+
+<div>
+  <button mat-icon-button>Icon</button>
+  <button mat-fab>Fab</button>
+  <button mat-mini-fab>MiniFab</button>
+</div>
+
+<!-- Button Colors -->
+<div>
+  <button color="primary" mat-flat-button>Primary</button>
+  <button color="accent" mat-flat-button>Accent</button>
+  <button color="warn" disableRipple mat-flat-button>Warn</button>
+  <button color="primary" mat-raised-button>Primary</button>
+  <button color="accent" mat-raised-button>Accent</button>
+  <button color="warn" mat-raised-button>Warn</button>
+</div>
+<hr />
+
+<p>Material Button Toggle</p>
+<div>
+  <mat-button-toggle #togglebtn checked>Toggle</mat-button-toggle>
+  {{ togglebtn.checked }}
+  <mat-button-toggle #togglebttn disableRipple disabled
+    >Toggle</mat-button-toggle
+  >
+  {{ togglebttn.checked }}
+</div>
+<br />
+
+<p>Radio</p>
+<div>
+  <mat-button-toggle-group #toggleGroup="matButtonToggleGroup">
+    <mat-button-toggle value="angular">Angular</mat-button-toggle>
+    <mat-button-toggle value="react">React</mat-button-toggle>
+    <mat-button-toggle value="vue">Vue</mat-button-toggle>
+  </mat-button-toggle-group>
+  {{ toggleGroup.value }}
+</div>
+<br />
+
+<p>Multiple CheckBox</p>
+<div>
+  <mat-button-toggle-group #multiToggleGroup="matButtonToggleGroup" multiple>
+    <mat-button-toggle value="angular">Angular</mat-button-toggle>
+    <mat-button-toggle value="react">React</mat-button-toggle>
+    <mat-button-toggle value="vue">Vue</mat-button-toggle>
+  </mat-button-toggle-group>
+  {{ multiToggleGroup.value }}
+</div>
+<hr />
+<br />
+
+<p>Material Icons</p>
+<div>
+  <mat-icon>home</mat-icon>
+  <mat-icon color="warn">delete</mat-icon>
+  <mat-icon>star</mat-icon>
+  <mat-icon color="accent">logout</mat-icon>
+  <mat-icon>cancel</mat-icon>
+  <mat-icon color="primary">login</mat-icon>
+</div>
+<hr />
+<br />
+
+<p>Material Badges</p>
+<div>
+  <span [matBadge]="notificaions" [matBadgeHidden]="notificaions === 0"
+    >Notifications</span
+  >
+</div>
+<div>
+  <span matBadge="5" matBadgePosition="below before">Notifications</span>
+</div>
+<div>
+  <span matBadge="5" matBadgePosition="below after">Notifications</span>
+</div>
+<div>
+  <span matBadge="5" matBadgePosition="above before">Notifications</span>
+</div>
+
+<div>
+  <span matBadge="5" matBadgeColor="primary" matBadgeSize="small"
+    >Notifications</span
+  >
+</div>
+<div>
+  <span matBadge="5" matBadgeColor="accent" matBadgeSize="medium"
+    >Notifications</span
+  >
+</div>
+<div>
+  <span
+    matBadge="5"
+    matBadgeColor="warn"
+    matBadgeOverlap="false"
+    matBadgeSize="large"
+    >Notifications</span
+  >
+</div>
+<hr />
+<br />
+
+<p>Material Progress Spinner</p>
+<div>
+  <mat-progress-spinner value="90"></mat-progress-spinner>
+  <br />
+  <!-- Spinner that never stops spinning -->
+  <mat-spinner color="warn"></mat-spinner>
+</div>
+<hr />
+<br />
+
+<p>Material Toolbar</p>
+<div>
+  <mat-toolbar class="navbar">
+    <div>Angular</div>
+    <div>
+      <span>Home</span>
+      <span>About</span>
+      <span>Services</span>
+    </div>
+  </mat-toolbar>
+</div>
+<hr />
+<br />
+
+<p>Material SideNav</p>
+<mat-sidenav-container>
+  <mat-sidenav mode="push" [(opened)]="opened">SideNav</mat-sidenav>
+  <mat-sidenav-content
+    >Main
+    <button (click)="opened = !opened">Toggle Open</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<br />
+<br />
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side">SideNav</mat-sidenav>
+  <mat-sidenav-content
+    >Main
+    <button (click)="sidenav.open()">Open</button>
+    <button (click)="sidenav.close()">Close</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div class="container"></div>
