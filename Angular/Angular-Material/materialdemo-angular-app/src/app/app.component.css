@@ -32,3 +32,31 @@ mat-sidenav {
   background-color: lightcoral;
   width: 200px;
 }
+
+mat-list-item {
+  background-color: blueviolet;
+}
+
+a {
+  background-color: brown;
+}
+
+mat-grid-tile {
+  background-color: lightblue;
+}
+
+mat-card {
+  background-color: antiquewhite;
+}
+
+mat-tab-group {
+  background-color: rgb(106, 106, 236);
+}
+
+mat-horizontal-stepper {
+  background-color: rgb(40, 142, 108);
+}
+
+mat-vertical-stepper {
+  background-color: rgb(123, 122, 122);
+}

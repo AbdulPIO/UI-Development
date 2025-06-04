@@ -160,5 +160,322 @@
     <button (click)="sidenav.close()">Close</button>
   </mat-sidenav-content>
 </mat-sidenav-container>
+<br />
+<hr />
+<br />
+
+<p>Material Menu</p>
+
+<button mat-flat-button [matMenuTriggerFor]="appMenu">Menu</button>
+
+<mat-menu #appMenu="matMenu" xPosition="after" yPosition="below">
+  <button mat-menu-item [matMenuTriggerFor]="subMenu">FrontEnd</button>
+  <button mat-menu-item>BackEnd</button>
+</mat-menu>
+
+<mat-menu #subMenu="matMenu">
+  <button mat-menu-item>Angular</button>
+  <button mat-menu-item>React</button>
+  <button mat-menu-item>Vue</button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="animals">Animal index</button>
+<mat-menu #animals="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+  <button mat-menu-item [matMenuTriggerFor]="invertebrates">
+    Invertebrates
+  </button>
+</mat-menu>
+
+<mat-menu #vertebrates="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+  <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+  <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+  <button mat-menu-item>Birds</button>
+  <button mat-menu-item>Mammals</button>
+</mat-menu>
+
+<mat-menu #invertebrates="matMenu">
+  <button mat-menu-item>Insects</button>
+  <button mat-menu-item>Molluscs</button>
+  <button mat-menu-item>Crustaceans</button>
+  <button mat-menu-item>Corals</button>
+  <button mat-menu-item>Arachnids</button>
+  <button mat-menu-item>Velvet worms</button>
+  <button mat-menu-item>Horseshoe crabs</button>
+</mat-menu>
+
+<mat-menu #fish="matMenu">
+  <button mat-menu-item>Baikal oilfish</button>
+  <button mat-menu-item>Bala shark</button>
+  <button mat-menu-item>Ballan wrasse</button>
+  <button mat-menu-item>Bamboo shark</button>
+  <button mat-menu-item>Banded killifish</button>
+</mat-menu>
+
+<mat-menu #amphibians="matMenu">
+  <button mat-menu-item>Sonoran desert toad</button>
+  <button mat-menu-item>Western toad</button>
+  <button mat-menu-item>Arroyo toad</button>
+  <button mat-menu-item>Yosemite toad</button>
+</mat-menu>
+
+<mat-menu #reptiles="matMenu">
+  <button mat-menu-item>Banded Day Gecko</button>
+  <button mat-menu-item>Banded Gila Monster</button>
+  <button mat-menu-item>Black Tree Monitor</button>
+  <button mat-menu-item>Blue Spiny Lizard</button>
+  <button mat-menu-item disabled>Velociraptor</button>
+</mat-menu>
+<br />
+
+<!-- Lazy Rendering -->
+<mat-menu #lazyMenu="matMenu">
+  <ng-template matMenuContent let-name="name" let-hobby="hobby">
+    <button mat-menu-item>Settings</button>
+    <button mat-menu-item>Hobby is {{ hobby }}</button>
+    <button mat-menu-item>Log out {{ name }}</button>
+  </ng-template>
+</mat-menu>
+
+<button
+  mat-stroked-button
+  [matMenuTriggerData]="{ name: 'User 1', hobby: 'Football' }"
+  [matMenuTriggerFor]="lazyMenu"
+>
+  User 1
+</button>
+<button
+  mat-stroked-button
+  [matMenuTriggerData]="{ name: 'User 2', hobby: 'Teaching' }"
+  [matMenuTriggerFor]="lazyMenu"
+>
+  User 2
+</button>
+<br />
+<hr />
+<br />
+
+<p>Material List</p>
+<mat-list>
+  <mat-list-item>Item 1</mat-list-item>
+  <mat-list-item>Item 2</mat-list-item>
+  <mat-list-item>Item 3</mat-list-item>
+</mat-list>
+
+<mat-nav-list>
+  <a mat-list-item href="#">Home</a>
+  <a mat-list-item href="#">About</a>
+  <a mat-list-item href="#">Services</a>
+</mat-nav-list>
+<br />
+
+<mat-list>
+  <mat-list-item>
+    <mat-icon matListIcon>home</mat-icon>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon matListIcon>folder</mat-icon>
+  </mat-list-item>
+</mat-list>
+<br />
+<hr />
+<br />
+
+<p>Material Grid List</p>
+<mat-grid-list cols="2" rowHeight="fit" style="height: 200px" gutterSize="10px">
+  <mat-grid-tile>Item 1</mat-grid-tile>
+  <mat-grid-tile>item 2</mat-grid-tile>
+  <mat-grid-tile>Item 3</mat-grid-tile>
+  <mat-grid-tile>Item 4</mat-grid-tile>
+</mat-grid-list>
+<br />
+<hr />
+<br />
+
+<p>Material Expansion Panel and Accordion</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Angular Fundamentals </mat-panel-title>
+      <mat-panel-description> Total Duration : 3 hours </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>This is the panel content. Add course details.</p>
+    <mat-action-row>
+      <button mat-stroked-button>Enroll</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Angular Material </mat-panel-title>
+      <mat-panel-description> Total Duration : 2 hours </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>This is the panel content. Add course details.</p>
+    <mat-action-row>
+      <button mat-stroked-button>Enroll</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<br />
+<hr />
+<br />
+
+<p>Material Cards</p>
+<mat-card>
+  <mat-card-title> Card Title </mat-card-title>
+  <mat-card-content> This is the card content </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-flat-button>Login</button>
+  </mat-card-actions>
+</mat-card>
+<br />
+<hr />
+<br />
+
+<p>Material Tabs</p>
+<mat-tab-group #tabRef>
+  <mat-tab label="Angular">Angular Content</mat-tab>
+  <mat-tab label="React">React Content</mat-tab>
+  <mat-tab label="Vue">Vue Content</mat-tab>
+</mat-tab-group>
+{{ tabRef.selectedIndex }}
+<br />
+<br />
+<hr />
+<br />
+
+<p>Material Stepper</p>
+<mat-horizontal-stepper linear>
+  <mat-step label="Shipping Address" completed="true"
+    >Shipping Address Details</mat-step
+  >
+  <mat-step label="Billing Address" completed="false" optional=""
+    ><p>Billing Address Details</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step label="Place Order" completed="false">Order Details</mat-step>
+</mat-horizontal-stepper>
+<br /><br />
+<mat-vertical-stepper linear>
+  <mat-step label="Shipping Address" completed="true"
+    >Shipping Address Details</mat-step
+  >
+  <mat-step label="Billing Address" completed="false" optional
+    ><p>Billing Address Details</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step label="Place Order" completed="false">Order Details</mat-step>
+</mat-vertical-stepper>
+<br />
+<hr />
+<br />
+
+<p>Material Input</p>
+<mat-form-field floatLabel="auto" color="accent">
+  <mat-label>Name</mat-label>
+  <input matInput required />
+  <mat-hint align="end">Min 5 characters</mat-hint>
+</mat-form-field>
+<br />
+<hr />
+<br />
+
+<p>Material Select</p>
+<mat-form-field>
+  <mat-label>Topic</mat-label>
+  <mat-select [(value)]="selectedValue">
+    <mat-option>None</mat-option>
+    <mat-optgroup label="Web">
+      <mat-option value="angular">Angular</mat-option>
+      <mat-option value="react">React</mat-option>
+      <mat-option value="vue">Vue</mat-option>
+    </mat-optgroup>
+    <mat-optgroup label="Mobile">
+      <mat-option value="ionic">Ionic</mat-option>
+      <mat-option value="reactnative">React Native</mat-option>
+    </mat-optgroup>
+  </mat-select>
+</mat-form-field>
+{{ selectedValue }}
+<br />
+<hr />
+<br />
+
+<p>Material Autocomplete</p>
+<form>
+  <mat-form-field>
+    <input type="text" matInput [matAutocomplete]="auto" />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <br />
+
+  <mat-form-field>
+    <input type="text" matInput [matAutocomplete]="objectAuto" />
+    <mat-autocomplete #objectAuto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of objectOptions" [value]="option">
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+<br />
+<hr />
+<br />
+
+<p>Checkbox and Radio Button</p>
+<mat-checkbox><span style="color: black">Subscribe</span> </mat-checkbox>
+<br />
+<mat-checkbox labelPosition="before"
+  ><span style="color: black">Subscribe</span>
+</mat-checkbox>
+<br />
+<mat-checkbox color="primary"
+  ><span style="color: black">Subscribe</span>
+</mat-checkbox>
+<br />
+<mat-checkbox color="warn" labelPosition="before"
+  ><span style="color: black">Subscribe</span>
+</mat-checkbox>
+<br />
+
+<mat-radio-group>
+  <mat-radio-button value="angular" color="primary"
+    ><span style="color: black">Angular</span></mat-radio-button
+  >
+  <mat-radio-button value="react"
+    ><span style="color: black">React</span></mat-radio-button
+  >
+  <mat-radio-button value="vue" color="warn"
+    ><span style="color: black">Vue</span></mat-radio-button
+  >
+</mat-radio-group>
+<br />
+<hr />
+<br />
+
+<p>Material Datepicker</p>
+<mat-form-field>
+  <input
+    matInput
+    [matDatepicker]="myDatepicker"
+    [min]="minDate"
+    [max]="maxDate"
+  />
+  <mat-datepicker-toggle [for]="myDatepicker" matSuffix></mat-datepicker-toggle>
+  <mat-datepicker #myDatepicker></mat-datepicker>
+</mat-form-field>
+
+<br />
 
 <div class="container"></div>
