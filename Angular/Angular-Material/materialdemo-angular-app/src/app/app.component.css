@@ -60,3 +60,17 @@ mat-horizontal-stepper {
 mat-vertical-stepper {
   background-color: rgb(123, 122, 122);
 }
+
+.number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid maroon;
+  box-sizing: border-box;
+  margin: 0;
+  height: 100px;
+}
+
+.scroll-container {
+  height: 400px;
+}
