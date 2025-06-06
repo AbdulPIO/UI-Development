@@ -602,6 +602,8 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+  <p>{{ profileForm.value.dob }}</p>
+  <p>{{ profileForm.value.dob | date : "MM/dd/yy" }}</p>
 
   <br />
   <button
@@ -620,6 +622,6 @@
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
-{{ newDate }}
+{{ newDate | date : "MM/dd/yy" }}
 
 <div class="container"></div>
