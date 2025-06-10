@@ -14,4 +14,11 @@ export class DesignUtilityService {
   videoEmit = new ReplaySubject<string>(3);//previous item = 3
 
   constructor() { }
+
+  print(val, containerId) {
+    let el = document.createElement('li');
+    el.innerText = val;
+
+    document.getElementById(containerId).appendChild(el)
+  }
 }
