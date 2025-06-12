@@ -1,0 +1,85 @@
+<mat-card>
+  <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width">
+      <mat-label>Team Name</mat-label>
+      <input matInput formControlName="teamName" />
+    </mat-form-field>
+
+    <div formArrayName="members">
+      <div
+        *ngFor="let member of members.controls; let i = index"
+        [formGroupName]="i"
+        class="member"
+      >
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+
+        <div formArrayName="skills">
+          <div *ngFor="let skill of getSkills(i).controls; let j = index">
+            <mat-form-field>
+              <mat-label>Skill</mat-label>
+              <input matInput [formControlName]="j" />
+            </mat-form-field>
+            <button
+              mat-icon-button
+              (click)="removeSkill(i, j)"
+              *ngIf="getSkills.length > 1"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+          <button mat-stroked-button type="button" (click)="addSkill(i)">
+            <mat-icon>add</mat-icon>Add Skill
+          </button>
+        </div>
+
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="removeMember(i)"
+          *ngIf="members.length >= 1"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      type="submit"
+      [disabled]="teamForm.invalid"
+    >
+      Submit
+    </button>
+    <button mat-flat-button type="button" (click)="addMember()">
+      Add Member
+    </button>
+  </form>
+</mat-card>
+<br /><br />
+
+<mat-divider></mat-divider>
+
+<h3>Submitted Teams</h3>
+<div *ngFor="let team of submittedData" class="team">
+  <strong>{{ team.teamName }}</strong>
+  <button mat-icon-button color="warn" (click)="deleteTeam(team.id!)">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <ul>
+    <li *ngFor="let m of team.members">
+      {{ m.name }} ({{ m.email }})
+      <ul>
+        <li *ngFor="let s of m.skills">{{ s }}</li>
+      </ul>
+    </li>
+  </ul>
+</div>
