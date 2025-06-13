@@ -1,0 +1,24 @@
+<mat-card>
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <mat-form-field
+      ><mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field
+      ><mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+    <mat-form-field
+      ><mat-label>Role</mat-label>
+      <input matInput formControlName="role" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Create
+    </button>
+  </form>
+</mat-card>

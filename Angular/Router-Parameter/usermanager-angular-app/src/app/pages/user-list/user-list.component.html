@@ -1,0 +1,23 @@
+<div class="actions">
+  <button mat-raised-button color="primary" (click)="create()">
+    Create User
+  </button>
+</div>
+<div class="cards">
+  <mat-card *ngFor="let u of users" class="user-card">
+    <mat-card-title>{{ u.name }}</mat-card-title>
+    <mat-card-subtitle>{{ u.role }}</mat-card-subtitle>
+    <p>{{ u.email }}</p>
+    <div class="buttons">
+      <button mat-icon-button color="primary" (click)="view(u.id!)">
+        <mat-icon>visibility</mat-icon>
+      </button>
+      <button mat-icon-button color="accent" (click)="edit(u.id!)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="delete(u.id!)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+</div>

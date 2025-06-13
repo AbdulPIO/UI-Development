@@ -1,0 +1,10 @@
+<mat-card *ngIf="user">
+  <mat-card-title>{{ user.name }}</mat-card-title>
+  <mat-card-content>
+    <p><strong>Email:</strong>{{ user?.email }}</p>
+    <p><strong>Role:</strong>{{ user?.role }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="goEdit()">Edit</button>
+  </mat-card-actions>
+</mat-card>

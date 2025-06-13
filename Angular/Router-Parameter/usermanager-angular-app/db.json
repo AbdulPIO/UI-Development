@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "99b8",
+      "name": "Abdul Mujeeb Khan",
+      "email": "abdul.khan@programmers.io",
+      "role": "UI Intern"
+    },
+    {
+      "id": "4cb2",
+      "name": "Harsh",
+      "email": "harsh@programmers.io",
+      "role": "IBMi "
+    },
+    {
+      "id": "e4ce",
+      "name": "John",
+      "email": "john@programmers.io",
+      "role": "Java"
+    }
+  ]
+}
